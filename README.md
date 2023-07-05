@@ -1,2 +1,10 @@
 # 5inOneCalculator
-This is a frontend project done by using HTML CSS JS
+This is a SIMPLE frontend project done by using HTML CSS JS
+it consists of :
+1) EMI AND TAX CALCULATOR
+2) BMI CALCULATOR
+3) CURRENCY CONVERTOR CALCULATOR
+4) SIMPLE CALCULATOR
+5) TIP CALCULATOR
+
+#FIRST_PROJECT:)
