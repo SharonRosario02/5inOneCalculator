@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EMI Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      .calculator {
+        margin-top: 20px;
+      }
+
+      label {
+        display: inline-block;
+        width: 200px;
+        text-align: right;
+      }
+
+      input[type="number"] {
+        width: 100px;
+        padding: 5px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        margin-top: 10px;
+        padding: 8px 16px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      #emiResult,
+      #totalInterest,
+      #totalPayment {
+        margin-top: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>EMI Calculator</h1>
+    <div class="calculator">
+      <label for="loanAmount">Loan Amount:</label>
+      <input type="number" id="loanAmount" />
+
+      <label for="interestRate">Interest Rate:</label>
+      <input type="number" id="interestRate" />
+
+      <label for="loanTenure">Loan Tenure (in months):</label>
+      <input type="number" id="loanTenure" />
+
+      <button onclick="calculateEMI()">Calculate EMI</button>
+
+      <div id="emiResult"></div>
+      <div id="totalInterest"></div>
+      <div id="totalPayment"></div>
+    </div>
+
+    <script>
+      function calculateEMI() {
+        var loanAmount = parseFloat(
+          document.getElementById("loanAmount").value
+        );
+        var interestRate = parseFloat(
+          document.getElementById("interestRate").value
+        );
+        var loanTenure = parseFloat(
+          document.getElementById("loanTenure").value
+        );
+
+        var monthlyInterestRate = interestRate / 100 / 12;
+        var numerator =
+          loanAmount *
+          monthlyInterestRate *
+          Math.pow(1 + monthlyInterestRate, loanTenure);
+        var denominator = Math.pow(1 + monthlyInterestRate, loanTenure) - 1;
+        var totalEMI = numerator / denominator;
+
+        var totalPayment = totalEMI * loanTenure;
+        var totalInterest = totalPayment - loanAmount;
+
+        document.getElementById("emiResult").innerHTML =
+          "EMI Amount: $" + totalEMI.toFixed(2);
+        document.getElementById("totalInterest").innerHTML =
+          "Total Interest: $" + totalInterest.toFixed(2);
+        document.getElementById("totalPayment").innerHTML =
+          "Total Payment: $" + totalPayment.toFixed(2);
+      }
+    </script>
+
+<h1>Tax Calculator</h1>
+<div class="calculator">
+  <label for="income">Income:</label>
+  <input type="number" id="income">
+  
+  <button onclick="calculateTax()">Calculate Tax</button>
+  
+  <div id="taxResult"></div>
+</div>
+
+<script>
+  function calculateTax() {
+    var income = parseFloat(document.getElementById("income").value);
+    
+    if (isNaN(income) || income <= 0) {
+      document.getElementById("taxResult").innerHTML = "Please enter a valid income value.";
+      return;
+    }
+    
+    var tax = 0;
+    
+    if (income <= 50000) {
+      tax = income * 0.1; // 10% tax rate
+    } else if (income > 50000 && income <= 100000) {
+      tax = income * 0.2; // 20% tax rate
+    } else {
+      tax = income * 0.3; // 30% tax rate
+    }
+    
+    document.getElementById("taxResult").innerHTML = "Your tax amount is: " + tax.toFixed(2);
+  }
+</script>
+  </body>
+</html>

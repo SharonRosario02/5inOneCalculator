@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scientific Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    .calculator {
+      margin-top: 20px;
+      display: inline-block;
+      text-align: left;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    
+    .calculator button {
+      width: 50px;
+      height: 50px;
+      font-size: 18px;
+      margin: 5px;
+      border: none;
+      background-color: #f2f2f2;
+      cursor: pointer;
+    }
+    
+    .calculator button.operator {
+      background-color: #4CAF50;
+      color: white;
+    }
+    
+    .calculator button#equals {
+      width: 110px;
+    }
+    
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Scientific Calculator</h1>
+  <div class="calculator">
+    <input type="text" id="expression" readonly>
+    <div>
+      <button onclick="appendToExpression('7')">7</button>
+      <button onclick="appendToExpression('8')">8</button>
+      <button onclick="appendToExpression('9')">9</button>
+      <button onclick="appendToExpression('/')">/</button>
+      <button onclick="appendToExpression('4')">4</button>
+      <button onclick="appendToExpression('5')">5</button>
+      <button onclick="appendToExpression('6')">6</button>
+      <button onclick="appendToExpression('*')">*</button>
+      <button onclick="appendToExpression('1')">1</button>
+      <button onclick="appendToExpression('2')">2</button>
+      <button onclick="appendToExpression('3')">3</button>
+      <button onclick="appendToExpression('-')">-</button>
+      <button onclick="appendToExpression('0')">0</button>
+      <button onclick="appendToExpression('.')">.</button>
+      <button onclick="clearExpression()">C</button>
+      <button onclick="appendToExpression('+')">+</button>
+      <button onclick="evaluateExpression()" id="equals">=</button>
+      <button onclick="backspace()" id="backspace">⌫</button>
+      <div class="result" id="result"></div>
+    </div>
+    <div class="result" id="result"></div>
+  </div>
+  
+  <script>
+    function appendToExpression(value) {
+      document.getElementById("expression").value += value;
+    }
+    
+    function clearExpression() {
+      document.getElementById("expression").value = "";
+    }
+    
+    function evaluateExpression() {
+      var expression = document.getElementById("expression").value;
+      
+      try {
+        var result = eval(expression);
+        document.getElementById("result").innerHTML = "Result: " + result;
+      } catch (error) {
+        document.getElementById("result").innerHTML = "Invalid expression";
+      }
+    }
+
+    function backspace() {
+      var expression = document.getElementById("expression").value;
+      document.getElementById("expression").value = expression.slice(0, -1);
+    }
+  </script>
+</body>
+</html>
